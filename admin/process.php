@@ -26,7 +26,7 @@
                 }
 
                 else {
-                    echo "Wrong username or password.";
+                    echo "Nombre de usuario o contraseña incorrectos";
                 }
 
             }

@@ -10,7 +10,8 @@
 
         //sql statement
         $sql = "SELECT * FROM tbl_staff WHERE username ='$username' AND password = '$password'";
-
+        $sql1 = "SELECT * FROM tbl_admin WHERE username ='$username' AND password = '$password'";
+        
         if ($result = $sqlconnection->query($sql)) {    
 
             if ($row = $result->fetch_array(MYSQLI_ASSOC)) {
