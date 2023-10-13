@@ -4,13 +4,13 @@
     if((isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['user_level'])) )  {
         if($_SESSION['user_level'] == "staff") {
         	session_destroy();
-         	header("Location: login.php");
+         	header("Location: ../index.php");
         }
         else
-        	header("Location: login.php");
+        	header("Location: ../index.php");
     }
 
     else
-    	header("Location: login.php");
+    	header("Location: ../index.php");
 
 ?>
