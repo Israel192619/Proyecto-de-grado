@@ -175,7 +175,7 @@
 			        						<td><?php echo $menuItemRow["price"] ?></td>
 			        						<td>
 			        							<a href="#editItemModal" data-toggle="modal" data-itemname="<?php echo $menuItemRow["menuItemName"] ?>" data-itemprice="<?php echo $menuItemRow["price"] ?>" data-menuid="<?php echo $menuRow["menuID"] ?>" data-itemid="<?php echo $menuItemRow["itemID"] ?>">Editar </a>
-			        							<a href="deleteitem.php?itemID=<?php echo $menuItemRow["itemID"] ?>&menuID=<?php echo $menuRow["menuID"] ?>"> Eliminar</a></td>
+			        							<a href="#deleteItem" data-toggle="modal"  data-itemid=<?php echo $menuItemRow["itemID"] ?> data-menuid=<?php echo $menuRow["menuID"] ?>> Eliminar</a></td>
 										</tr>
 
 									<?php
@@ -383,6 +383,29 @@
       </div>
     </div>
 
+	<!-- Eliminar item-->
+    <div class="modal fade" id="deleteItem" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">Estás seguro de eliminar este Item?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Seleccione "Eliminar" a continuación se eliminará su artículo en esta categoría.</div>
+          <div class="modal-footer">
+          	<form id="deleteitemform" method="POST" action="deleteitem.php">
+          		<input type="hidden" name="menuID" id="menuid">
+          		<input type="hidden" name="itemID" id="itemid">
+          	</form>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+	        <button type="submit" form="deleteitemform" class="btn btn-danger" name="deleteitem">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -445,6 +468,19 @@
 			  modal.find('.modal-body').html('Selecciona "Eliminar" y a continuación se borrará esta lista completa');
 			  modal.find('.modal-footer #menuid').val(id);
 		});
+
+		$('#deleteItem').on('show.bs.modal', function (event) {
+			  var button = $(event.relatedTarget); // Button that triggered the modal
+			  var menuid = button.data('menuid'); // Extract info from data-* attributes
+			  var itemid = button.data('itemid');
+
+			  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+			  var modal = $(this);
+			  modal.find('.modal-body').html('Selecciona "Eliminar" y a continuación se borrará de la lista');
+			  modal.find('.modal-footer #menuid').val(menuid);
+			  modal.find('.modal-footer #itemid').val(itemid);
+		});
+		
     </script>
 
     <script type="text/javascript">

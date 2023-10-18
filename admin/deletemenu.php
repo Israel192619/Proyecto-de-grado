@@ -1,6 +1,7 @@
 <?php
 
 	if (isset($_POST['deletemenu'])) {
+		
 
 		//Deleting Menu
 		if (isset($_POST['menuID'])) {

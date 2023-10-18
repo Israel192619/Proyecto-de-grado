@@ -1,99 +1,113 @@
-<?php 
-    include("functions.php");
+<style>
+    body {
+        background-image: url('image/fond_mad2.avif');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center center;
+        margin: 0;
+    }
 
-    if((isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['user_level'])) )  {
-        if($_SESSION['user_level'] == "staff") {
-          header("Location: index.php");
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+  /*  .phone-number {
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        width: 300px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+*/
+    .logo {
+        max-width: 200px;
+        /* Ajusta el tamaño del logo según tus necesidades */
+    }
+
+    .login-button {
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        padding: 10px 20px;
+        font-size: 50px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        width: 500px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .login-button:hover {
+        background: white;
+        color: black;
+        transition: 0.3s;
+    }
+
+    /* CSS anterior */
+
+    .hidden-view {
+        display: none;
+        /* Oculta la vista adicional inicialmente */
+        background: rgba(255, 255, 255, 0.9);
+        /* Fondo semitransparente para la vista adicional */
+        color: black;
+        padding: 20px;
+    }
+
+    .footer {
+        background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .footer {
+            position: relative;
         }
     }
-?>
-
+</style>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-  <head>
+<head>
+    <link rel="stylesheet" type="text/css" href="#">
+</head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Login</title>
-
-    <!-- Bootstrap core CSS-->
-    <link href="staff/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template-->
-    <link href="staff/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
-    <!-- Custom styles for this template-->
-    <link href="staff/css/sb-admin.css" rel="stylesheet">
-
-  </head>
-
-  <body class="bg-dark">
-
+<body>
     <div class="container">
-      <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
-        <div class="card-body">
-          <form id="loginform">
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Usuario" required="required" autofocus="autofocus" >
-                <label for="inputUsername">Usuario</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                    <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Contraseña" required="required" >
-                    <label for="inputPassword">Contraseña</label>
-              </div>
-            </div>
-            <div class="form-group">
-                <div id="warningbox">
-                </div>
-            <input type="submit" class="btn btn-primary btn-block" form="loginform" name="btnlogin" value="Ingresar" />
-          </form>
-		  <a href="../index.php" class="btn btn-primary btn-block">Volver al Inicio</a>
-        </div>
-      </div>
+        <!-- Contenido de tu página -->
+        <!--<div class="phone-number">Telefono: +1 123-456-7890</div>-->
+        <img src="image/log.png" alt="Logo" class="logo">
+        <button></button>
+        <a class="login-button" id="showViewButton" href="login.php">INICIAR SESION </a>
+
     </div>
-	</div>
+    <div class="content">
+        <!-- Contenido de tu sitio web -->
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="staff/vendor/jquery/jquery.min.js"></script>
-    <script src="staff/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <div class="footer">
+            <p>Contacto: ejemplo@email.com</p>
+            <p>Teléfono: (123) 456-7890</p>
+        </div>
+    </div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="staff/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <script type="text/javascript">
-        $('#loginform').submit(function() {
-            $.ajax({
-                type: "POST",
-                url: 'process.php',
-                data: {
-                    username: $("#inputUsername").val(),
-                    password: $("#inputPassword").val()
-                },
-                success: function(data)
-                {
-                    if (data === 'correct') {
-                        window.location.replace('staff/index.php');
-                    }else if(data === 'correct1'){
-                      window.location.replace('admin/index.php');
-                    }
-                    else {
-                        $("#warningbox").html("<div class='alert alert-danger' role='alert'>"+data+"!</div>");
-                    }
-                }
-            });
-            return false;
-        });
-    </script>
-
-  </body>
+</body>
 
 </html>
